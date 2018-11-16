@@ -90,10 +90,9 @@ $(function() {
             loadFeed(0, done);
         });
         
-        it('have at least 1 entry', function(done) {
-            const entry = document.querySelectorAll('.entry');
-            expect(entry.length > 0).toBe(true);
-            done();
+        it('have at least 1 entry', function() {
+            const feedEntries = document.querySelector('.feed').children;
+            expect(feedEntries.length > 0).toBe(true);
         });
     });
 

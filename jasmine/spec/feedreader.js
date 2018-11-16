@@ -57,9 +57,9 @@ $(function() {
         /* A test that ensures the menu element is hidden by default.
          */
         it('is hidden by default', function() {
-            const bodyClass = document.querySelector('body').className;
+            const body = document.querySelector('body');
             
-            expect(bodyClass).toBe('menu-hidden');
+            expect(body.classList.contains('menu-hidden')).toBe(true);
         });
         
         /* A test that ensures the menu changes

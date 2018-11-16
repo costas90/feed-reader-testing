@@ -98,26 +98,23 @@ $(function() {
 
     /* A test suite named "New Feed Selection" */
     describe('New Feed Selection', function() {
-        let feed1 = [];
-
+        let feedHTML, feedHTML2;
+        
         /* A test that ensures when a new feed is loaded
          * by the loadFeed function that the content actually changes.
          */
         beforeEach(function(done) {
-            const entry = document.querySelectorAll('.entry');
-            loadFeed(0);
-            entry.forEach(function(el) {
-                feed1.push(el.innerText);
+            loadFeed(0, function() {
+                feedHTML = document.querySelector('.feed').innerHTML;
+                loadFeed(1, function() {
+                    feedHTML2 = document.querySelector('.feed').innerHTML;
+                    loadFeed(0, done);
+                });
             });
-            loadFeed(1, done);
         });
         
-        it('content changes', function(done) {
-            const entry = document.querySelectorAll('.entry');
-            entry.forEach(function(el, i) {
-                expect(el.innerText === feed1[i]).toBe(false);
-            });
-            done();
+        it('content changes', function() {
+            expect(feedHTML === feedHTML2).toBe(false);
         });
     });
 }());

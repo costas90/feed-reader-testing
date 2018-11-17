@@ -91,7 +91,7 @@ $(function() {
         });
         
         it('have at least 1 entry', function() {
-            const feedEntries = document.querySelector('.feed').children;
+            const feedEntries = $('.feed').children().children('.entry');
             expect(feedEntries.length > 0).toBe(true);
         });
     });
@@ -108,7 +108,7 @@ $(function() {
                 feedHTML = document.querySelector('.feed').innerHTML;
                 loadFeed(1, function() {
                     feedHTML2 = document.querySelector('.feed').innerHTML;
-                    loadFeed(0, done);
+                    done();
                 });
             });
         });
